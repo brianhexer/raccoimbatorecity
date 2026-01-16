@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard - Rotaract Club of Coimbatore City</title>
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="assets/icon/flaticon_charitics.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/animate-wow/animate.min.css">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        .dashboard-container {
+            padding: 40px 0;
+            background: #f8f9fa;
+            min-height: calc(100vh - 400px);
+        }
+
+        .dashboard-header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .dashboard-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-subtitle {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid #FF6B35;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .stat-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: #FF6B35;
+        }
+
+        .upcoming-event {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 3px solid #FF6B35;
+        }
+
+        .event-date {
+            font-size: 12px;
+            color: #FF6B35;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .event-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .event-location {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: linear-gradient(135deg, #FF6B35, #F44708);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+            color: white;
+        }
+
+        .recent-activity {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .activity-date {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .profile-card {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FF6B35, #F44708);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 40px;
+            color: white;
+        }
+
+        .profile-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .profile-role {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- SIDEBAR SECTION START -->
+    <div class="ul-sidebar">
+        <div class="ul-sidebar-header">
+            <div class="ul-sidebar-header-logo">
+                <a href="home.html">
+                    <img src="assets/img/logo.svg" alt="logo" class="logo">
+                </a>
+            </div>
+            <button class="ul-sidebar-closer"><i class="flaticon-close"></i></button>
+        </div>
+
+        <div class="ul-sidebar-header-nav-wrapper d-block d-lg-none"></div>
+
+        <div class="ul-sidebar-footer">
+            <span class="ul-sidebar-footer-title">Follow us</span>
+            <div class="ul-sidebar-footer-social">
+                <a href="https://www.facebook.com/share/gh8cNttSyKGxhVuC/"><i class="flaticon-facebook"></i></a>
+                <a href="https://x.com/raccbecity"><i class="flaticon-twitter-1"></i></a>
+                <a href="https://www.instagram.com/raccoimbatorecity"><i class="flaticon-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/raccoimbatorecity"><i class="flaticon-linkedin-big-logo"></i></a>
+                <a href="https://www.youtube.com/@raccoimbatorecity"><i class="flaticon-youtube"></i></a>
+                <a href="https://www.threads.net/@raccoimbatorecity"><i class="fa-brands fa-threads"></i></a>
+                <a href="https://t.me/raccoimbatorecity"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://whatsapp.com/channel/0029Vadde0RBPzjUzrY55x3P"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- SIDEBAR SECTION END -->
+
+    <!-- SEARCH MODAL SECTION START -->
+    <div class="ul-search-form-wrapper flex-grow-1 flex-shrink-0">
+        <button class="ul-search-closer"><i class="flaticon-close"></i></button>
+        <form action="#" class="ul-search-form">
+            <div class="ul-search-form-right">
+                <input type="search" name="search" id="ul-search" placeholder="Search Here">
+                <button type="submit"><span class="icon"><i class="flaticon-search"></i></span></button>
+            </div>
+        </form>
+    </div>
+    <!-- SEARCH MODAL SECTION END -->
+
+    <!-- HEADER SECTION START -->
+    <header class="ul-header">
+        <div class="ul-header-bottom to-be-sticky">
+            <div class="ul-header-bottom-wrapper ul-header-container">
+                <div class="logo-container">
+                    <a href="home.html" class="d-inline-block"><img src="assets/img/logo.svg" alt="logo" class="logo"></a>
+                </div>
+
+                <!-- header nav -->
+                <div class="ul-header-nav-wrapper">
+                    <div class="to-go-to-sidebar-in-mobile">
+                        <nav class="ul-header-nav">
+                            <a href="home.html">Home</a>
+                            <a href="about-us.html">About</a>
+                            <div class="has-sub-menu">
+                                <a role="button">Portal</a>
+                                <div class="ul-header-submenu">
+                                    <ul>
+                                        <li><a href="/portal/admin.html"><i class="flaticon-settings"></i> Admin Portal</a></li>
+                                        <li><a href="/portal/"><i class="flaticon-user"></i> Member Portal</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="contact-us.html">Contact</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- actions -->
+                <div class="ul-header-actions">
+                    <button class="ul-header-search-opener"><i class="flaticon-search"></i></button>
+                    <a href="contact-us.html" class="ul-btn d-sm-inline-flex d-none"><i class="flaticon-fast-forward-double-right-arrows-symbol"></i> Join With us </a>
+                    <button class="ul-header-sidebar-opener d-lg-none d-inline-flex"><i class="flaticon-menu"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- HEADER SECTION END -->
+
+    <main>
+        <div class="dashboard-container" id="dashboardContent">
+            <!-- Dashboard will be loaded here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- FOOTER SECTION START -->
+    <footer class="ul-footer">
+        <div class="ul-footer-top">
+            <div class="ul-footer-container">
+                <div class="ul-footer-top-contact-infos">
+                    <div class="ul-footer-top-contact-info">
+                        <div class="ul-footer-top-contact-info-icon">
+                            <div class="ul-footer-top-contact-info-icon-inner">
+                                <i class="flaticon-pin"></i>
+                            </div>
+                        </div>
+                        <div class="ul-footer-top-contact-info-txt">
+                            <span class="ul-footer-top-contact-info-label">Address</span>
+                            <h5 class="ul-footer-top-contact-info-address">Coimbatore, Tamil Nadu, India<br>RID 3206 | Zone 05</h5>
+                        </div>
+                    </div>
+
+                    <div class="ul-footer-top-contact-info">
+                        <div class="ul-footer-top-contact-info-icon">
+                            <div class="ul-footer-top-contact-info-icon-inner">
+                                <i class="flaticon-email"></i>
+                            </div>
+                        </div>
+                        <div class="ul-footer-top-contact-info-txt">
+                            <span class="ul-footer-top-contact-info-label">Send Email</span>
+                            <h5 class="ul-footer-top-contact-info-address"><a href="mailto:support@raccoimbatorecity.org">support@raccoimbatorecity.org</a></h5>
+                        </div>
+                    </div>
+
+                    <div class="ul-footer-top-contact-info">
+                        <div class="ul-footer-top-contact-info-icon">
+                            <div class="ul-footer-top-contact-info-icon-inner">
+                                <i class="flaticon-telephone-call-1"></i>
+                            </div>
+                        </div>
+                        <div class="ul-footer-top-contact-info-txt">
+                            <span class="ul-footer-top-contact-info-label">Contact Us</span>
+                            <h5 class="ul-footer-top-contact-info-address"><a href="tel:+918110003206">+91 8110003206</a></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ul-footer-middle">
+            <div class="ul-footer-container">
+                <div class="ul-footer-middle-wrapper wow animate__fadeInUp">
+                    <div class="ul-footer-about">
+                        <a href="home.html"><img src="assets/img/logo-white.svg" alt="logo" class="logo"></a>
+                        <p class="ul-footer-about-txt">Rotaract Club of Coimbatore City<br>Rotary International District 3206<br>Club ID : 8823931 | Zone 05<br>Coimbatore, Tamil Nadu, India.</p>
+                        <div class="ul-footer-socials">
+                            <a href="https://www.facebook.com/share/gh8cNttSyKGxhVuC/"><i class="flaticon-facebook"></i></a>
+                            <a href="https://x.com/raccbecity"><i class="flaticon-twitter-1"></i></a>
+                            <a href="https://www.instagram.com/raccoimbatorecity"><i class="flaticon-instagram"></i></a>
+                            <a href="https://www.linkedin.com/company/raccoimbatorecity"><i class="flaticon-linkedin-big-logo"></i></a>
+                            <a href="https://www.youtube.com/@raccoimbatorecity"><i class="flaticon-youtube"></i></a>
+                            <a href="https://www.threads.net/@raccoimbatorecity"><i class="fa-brands fa-threads"></i></a>
+                            <a href="https://t.me/raccoimbatorecity"><i class="fa-brands fa-telegram"></i></a>
+                            <a href="https://whatsapp.com/channel/0029Vadde0RBPzjUzrY55x3P"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="ul-footer-widget">
+                        <h3 class="ul-footer-widget-title">Quick Links</h3>
+                        <div class="ul-footer-widget-links">
+                            <a href="home.html">Home</a>
+                            <a href="about-us.html">About Us</a>
+                            <a href="our-services.html">Our Services</a>
+                            <a href="blog.html">Our Blogs</a>
+                            <a href="frequently-asked-questions.html">FAQs</a>
+                            <a href="contact-us.html">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ul-footer-bottom">
+            <div class="ul-footer-container">
+                <div class="ul-footer-bottom-wrapper">
+                    <p class="copyright-txt">&copy; <span id="footer-copyright-year"></span> Rotaract Club of Coimbatore City. All rights reserved</p>
+                    <div class="ul-footer-bottom-nav"><a href="terms-and-conditions.html">Terms & Conditions</a> <a href="privacy-policy.html">Privacy Policy</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ul-footer-vectors">
+            <img src="assets/img/footer-vector-img.png" alt="Footer Image" class="ul-footer-vector-1">
+        </div>
+    </footer>
+    <!-- FOOTER SECTION END -->
+
+    <!-- libraries JS -->
+    <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/animate-wow/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/member-dashboard.js"></script>
+</body>
+
+</html>
+
