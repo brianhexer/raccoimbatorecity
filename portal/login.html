@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #000000 0%, #0401aa 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -79,7 +79,7 @@
         }
 
         .member-icon {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #004B87 0%, #0066BB 100%);
         }
 
         .admin-icon {
@@ -141,6 +141,41 @@
             transform: translateY(-2px);
         }
 
+        /* Custom Cursor */
+        body {
+            cursor: none !important;
+        }
+
+        *,
+        a,
+        button,
+        [role="button"] {
+            cursor: none !important;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            background: #9372FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            mix-blend-mode: difference;
+            box-shadow: 0 0 10px rgba(147, 114, 255, 0.9);
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .custom-cursor.hovering {
+            width: 18px;
+            height: 18px;
+            box-shadow: 0 0 20px rgba(147, 114, 255, 1);
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 32px;
@@ -149,10 +184,15 @@
             .portal-grid {
                 grid-template-columns: 1fr;
             }
+
+            .custom-cursor {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="custom-cursor" id="cursor"></div>
     <div class="portal-container">
         <div class="header">
             <h1><i class="fas fa-door-open"></i> Rotaract Portal</h1>
@@ -194,5 +234,49 @@
             </a>
         </div>
     </div>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        let cursorX = 0;
+        let cursorY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+        });
+
+        // Check for interactive elements
+        document.addEventListener('mouseover', (e) => {
+            const target = e.target;
+            const isInteractive = target.tagName === 'A' || 
+                                target.tagName === 'BUTTON' || 
+                                target.closest('a') || 
+                                target.closest('button') ||
+                                target.closest('[role="button"]');
+            if (isInteractive) {
+                cursor.classList.add('hovering');
+            } else {
+                cursor.classList.remove('hovering');
+            }
+        });
+
+        // Smooth cursor animation
+        function animateCursor() {
+            const dx = targetX - cursorX;
+            const dy = targetY - cursorY;
+            
+            cursorX += dx * 0.2;
+            cursorY += dy * 0.2;
+            
+            cursor.style.transform = `translate(${cursorX - 6}px, ${cursorY - 6}px)`;
+            
+            requestAnimationFrame(animateCursor);
+        }
+        
+        animateCursor();
+    </script>
 </body>
 </html>
