@@ -66,7 +66,7 @@ class MemberDashboard {
         // Check if user is logged in
         const loggedIn = this.checkLogin();
         if (!loggedIn) {
-            window.location.href = '/portal/';
+            window.location.href = '/portal/login.html';
             return;
         }
 
@@ -754,7 +754,7 @@ class MemberDashboard {
     handleLogout() {
         if (confirm('Are you sure you want to logout?')) {
             localStorage.removeItem('memberPortalUser');
-            window.location.href = '/portal/';
+            window.location.href = '/portal/login.html';
         }
     }
 }
