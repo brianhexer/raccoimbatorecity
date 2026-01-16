@@ -1081,3 +1081,4 @@ let adminDashboard;
 document.addEventListener('DOMContentLoaded', function() {
     adminDashboard = new AdminDashboard();
 });
+

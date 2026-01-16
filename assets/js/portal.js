@@ -55,11 +55,11 @@ class PortalSystem {
         
         simpleHeader.innerHTML = `
             <div style="display: flex; align-items: center; padding: 0 20px;">
-                <a href="/home.html" style="display: inline-block;">
+                <a href="/raccoimbatorecity/home.html" style="display: inline-block;">
                     <img src="/assets/img/logo.svg" alt="logo" style="height: 40px; width: auto;">
                 </a>
             </div>
-            <a href="/home.html" style="
+            <a href="/raccoimbatorecity/home.html" style="
                 padding: 10px 20px;
                 background: linear-gradient(135deg, #FF6B35, #F44708);
                 color: white;
@@ -284,3 +284,4 @@ if (document.readyState === 'loading') {
 } else {
     window.portalSystem = new PortalSystem();
 }
+

@@ -96,13 +96,13 @@ class AdminDashboard {
         
         simpleHeader.innerHTML = `
             <div style="display: flex; align-items: center; padding: 0 20px;">
-                <a href="/home.html" style="display: inline-block;">
+                <a href="/raccoimbatorecity/home.html" style="display: inline-block;">
                     <img src="/assets/img/logo.svg" alt="logo" style="height: 40px; width: auto;">
                 </a>
             </div>
             <div style="display: flex; align-items: center; gap: 15px; padding: 0 20px;">
                 <span style="color: white; font-weight: 600;">Admin Panel</span>
-                <a href="/home.html" style="
+                <a href="/raccoimbatorecity/home.html" style="
                     padding: 10px 20px;
                     background: linear-gradient(135deg, #FF6B35, #F44708);
                     color: white;
@@ -764,3 +764,4 @@ let adminDashboard;
 document.addEventListener('DOMContentLoaded', function() {
     adminDashboard = new AdminDashboard();
 });
+

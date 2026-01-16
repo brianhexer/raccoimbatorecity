@@ -1017,3 +1017,4 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
     animateTitle();
 });
+

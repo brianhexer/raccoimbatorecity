@@ -47,3 +47,4 @@ function triggerCountdown(countdownElem, days, hours, minutes, seconds) {
 }
 
 triggerCountdown(".ul-countdown", 20, 19, 16, 38);
+
