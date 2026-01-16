@@ -110,7 +110,7 @@ class AdminDashboard {
         // Check if admin is logged in
         const loggedIn = this.checkAdminLogin();
         if (!loggedIn) {
-            window.location.href = "admin-portal.html";
+            window.location.href = "/raccoimbatorecity/portal/admin.html";
             return;
         }
 
@@ -1071,7 +1071,7 @@ class AdminDashboard {
     handleLogout() {
         if (confirm('Are you sure you want to logout?')) {
             localStorage.removeItem('adminPortalUser');
-            window.location.href = 'admin-portal.html';
+            window.location.href = "/raccoimbatorecity/portal/admin.html";
         }
     }
 }
