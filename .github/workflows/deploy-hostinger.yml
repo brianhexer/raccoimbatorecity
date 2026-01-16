@@ -15,6 +15,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check for required secrets
+        id: check-secrets
+        run: |
+          if [ -z "${{ secrets.FTP_SERVER }}" ] || [ -z "${{ secrets.FTP_USERNAME }}" ] || [ -z "${{ secrets.FTP_PASSWORD }}" ]; then
+            echo "::error::Missing required FTP secrets. Please configure FTP_SERVER, FTP_USERNAME, and FTP_PASSWORD in GitHub Settings → Secrets and variables → Actions"
+            exit 1
+          fi
+          echo "Secrets configured. Proceeding with deployment..."
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
