@@ -123,6 +123,21 @@ a:hover { color: #fff; }
 
 h2, h3 { margin-top: 0; }
 
+.form-grid { display: grid; gap: 0.8rem; }
+.form-grid label { display: grid; gap: 0.35rem; font-weight: 600; }
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  padding: 0.6rem 0.7rem;
+}
+.form-grid textarea { resize: vertical; }
+.full-width { grid-column: 1 / -1; }
+.subtle-text { opacity: 0.85; font-size: 0.9rem; }
+
 .footer {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   margin-top: 2rem;
